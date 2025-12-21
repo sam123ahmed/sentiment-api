@@ -26,7 +26,7 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no ubuntu@18.234.231.208 << 'EOF'
             echo "Pulling latest code..."
-            cd ~/sentiment-api
+            cd ~/sentiment-api/backend
             git reset --hard
             git clean -fd
             git pull origin main
