@@ -17,5 +17,5 @@ def predict(data: TextInput):
     return predict_sentiment(data.text)
 
 @app.post("/api/v1/testing")
-def predict():
+def predicting():
     return print("testing")
