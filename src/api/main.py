@@ -18,4 +18,4 @@ def predict(data: TextInput):
 
 @app.post("/api/v1/testing")
 def predicting():
-    return print("testing")
+    return "testing"
