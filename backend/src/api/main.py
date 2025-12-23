@@ -18,4 +18,4 @@ def predict(data: TextInput):
 
 @app.post("/api/v1/predicting")
 def predicting():
-    return "tesing"
+    return "tesing latest"
