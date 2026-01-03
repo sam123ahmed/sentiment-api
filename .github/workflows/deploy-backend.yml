@@ -1,0 +1,49 @@
+name: Deploy Backend (FastAPI)
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "backend/**"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup SSH agent
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.EC2_SSH_KEY }}
+
+      - name: Deploy backend to EC2
+        run: |
+          ssh -o StrictHostKeyChecking=no ubuntu@18.234.231.208 << 'EOF'
+            set -e
+
+            echo "Pulling latest backend code..."
+            cd ~/sentiment-api/backend
+            git reset --hard
+            git clean -fd
+            git pull origin main
+
+            echo "Building Docker image..."
+            docker build -t sentiment-api .
+
+            echo "Stopping old container..."
+            docker stop sentiment-api || true
+            docker rm sentiment-api || true
+
+            echo "Starting new container on port 8000..."
+            docker run -d \
+              -p 127.0.0.1:8000:8000 \
+              --name sentiment-api \
+              --restart unless-stopped \
+              sentiment-api
+
+            echo "Backend deployment complete!"
+          EOF
