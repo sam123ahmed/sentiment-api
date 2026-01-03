@@ -45,7 +45,7 @@ export default function InputForm({ onAnalyze }) {
         type="submit"
         className="mt-4 w-full bg-green-500 text-white py-3 rounded-xl font-bold hover:bg-green-600 transition-all"
       >
-        Analyze
+        Analyzes
       </button>
     </form>
   );
