@@ -26,7 +26,7 @@ class TextInput(BaseModel):
 
 @app.get("/")
 def health():
-    return {"status": "ok", "message": "Sentiment API is running"}
+    return {"status": "ok", "message": "Sentiment APIs is running"}
 
 @app.post("/api/v1/predict")
 def predict(data: TextInput):
