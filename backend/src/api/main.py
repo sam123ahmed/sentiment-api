@@ -31,3 +31,7 @@ def health():
 @app.post("/api/v1/predict")
 def predict(data: TextInput):
     return predict_sentiment(data.text)
+
+@app.post("/api/v1/test")
+def test():
+    return "testings"
