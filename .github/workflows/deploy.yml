@@ -39,7 +39,7 @@ jobs:
             docker rm sentiment-api || true
 
             echo "Running new container..."
-            docker run -d -p 80:8000 --name sentiment-api --restart unless-stopped sentiment-api
+            docker run -d -p 8000:8000 --name sentiment-api --restart unless-stopped sentiment-api
 
             echo "Deployment complete!"
           EOF
