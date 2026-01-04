@@ -34,4 +34,4 @@ def predict(data: TextInput):
 
 @app.post("/api/v1/test")
 def test():
-    return "tttvvvss"
+    return "vvjj"
