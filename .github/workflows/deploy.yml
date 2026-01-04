@@ -12,7 +12,6 @@ jobs:
   backend:
     name: Deploy FastAPI Backend
     runs-on: ubuntu-latest
-    if: contains(join(github.event.commits.*.modified, ' '), 'backend/')
 
     steps:
       - uses: actions/checkout@v3
@@ -41,7 +40,6 @@ jobs:
   frontend:
     name: Deploy Frontend
     runs-on: ubuntu-latest
-    if: contains(join(github.event.commits.*.modified, ' '), 'frontend/')
 
     steps:
       - uses: actions/checkout@v3
