@@ -40,7 +40,7 @@ jobs:
 
             echo "Starting new container on port 8000..."
             docker run -d \
-              -p 8000:8000 \
+              -p 80:8000 \
               --name sentiment-api \
               --restart unless-stopped \
               sentiment-api
