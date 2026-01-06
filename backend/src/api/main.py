@@ -34,15 +34,16 @@ class FeedbackInput(BaseModel):
 def health():
     return {"status": "ok", "message": "Sentiment APIs is running"}
 
-@app.post("/api/v1/predict")
-def predict(data: TextInput):
+@app.post("/api/v1/predictv")
+def predictv(data: TextInput):
     return predict_sentiment(data.text)
 
 @app.post("/api/v1/feedback")
 def submit_feedback(feedback: FeedbackInput):
-    saved = save_user_feedback(feedback)
-    if saved:
-        return {"status": "success", "message": "User feedback saved!"}
-    else:
-        return {"status": "ignored", "message": "This feedback already exists in train.csv."}
+    return "ttss"
+    # saved = save_user_feedback(feedback)
+    # if saved:
+    #     return {"status": "success", "message": "User feedback saved!"}
+    # else:
+    #     return {"status": "ignored", "message": "This feedback already exists in train.csv."}
     
