@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from src.inference.predict import predict_sentiment
+from src.inference.feedback import save_user_feedback
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title="Sentiment Analysis API", version="v1")
@@ -24,6 +25,10 @@ app.add_middleware(
 class TextInput(BaseModel):
     text: str
 
+class FeedbackInput(BaseModel):
+    text: str
+    sentiment: str
+
 
 @app.get("/")
 def health():
@@ -32,4 +37,12 @@ def health():
 @app.post("/api/v1/predict")
 def predict(data: TextInput):
     return predict_sentiment(data.text)
+
+@app.post("/api/v1/feedback")
+def submit_feedback(feedback: FeedbackInput):
+    saved = save_user_feedback(feedback)
+    if saved:
+        return {"status": "success", "message": "User feedback saved!"}
+    else:
+        return {"status": "ignored", "message": "This feedback already exists in train.csv."}
     
