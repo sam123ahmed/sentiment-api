@@ -40,10 +40,9 @@ def predictv(data: TextInput):
 
 @app.post("/api/v1/feedback")
 def submit_feedback(feedback: FeedbackInput):
-    return "ttss"
-    # saved = save_user_feedback(feedback)
-    # if saved:
-    #     return {"status": "success", "message": "User feedback saved!"}
-    # else:
-    #     return {"status": "ignored", "message": "This feedback already exists in train.csv."}
+    saved = save_user_feedback(feedback)
+    if saved:
+        return {"status": "success", "message": "User feedback saved!"}
+    else:
+        return {"status": "ignored", "message": "This feedback already exists in train.csv."}
     
