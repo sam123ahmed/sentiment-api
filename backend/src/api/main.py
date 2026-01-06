@@ -34,6 +34,6 @@ class FeedbackInput(BaseModel):
 def health():
     return {"status": "ok", "message": "Sentiment APIs is running"}
 
-@app.post("/api/v1/predictv")
-def predictv(data: TextInput):
+@app.post("/api/v1/predict")
+def predict(data: TextInput):
     return predict_sentiment(data.text)
