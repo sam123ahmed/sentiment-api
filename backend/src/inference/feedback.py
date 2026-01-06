@@ -1,8 +1,13 @@
 import os
 import pandas as pd
 from src.utils.preprocess import normalize_text
+from pydantic import BaseModel
 
 TRAIN_CSV = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "train.csv")
+
+class FeedbackInput(BaseModel):
+    text: str
+    sentiment: str
 
 def save_user_feedback(feedback: FeedbackInput):
     # Normalize text
