@@ -41,7 +41,7 @@ export default function App() {
         <p className="tagline">Understand emotion with AI</p>
 
         <textarea
-          placeholder="Type a sentence and let AI analyze the emotion…"
+          placeholder="Type a sentence and let AI analyze the emotion…."
           value={text}
           onChange={e => setText(e.target.value)}
         />
