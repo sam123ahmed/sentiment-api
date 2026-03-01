@@ -27,7 +27,8 @@ class TextInput(BaseModel):
 
 class FeedbackInput(BaseModel):
     text: str
-    sentiment: str
+    predicted: str
+    user_feedback: str
 
 
 @app.get("/")
@@ -37,3 +38,13 @@ def health():
 @app.post("/api/v1/predict")
 def predict(data: TextInput):
     return predict_sentiment(data.text)
+
+
+@app.post("/api/v1/feedback")
+def feedback(data: FeedbackInput):
+    save_user_feedback(
+        text=data.text,
+        predicted=data.predicted,
+        user_feedback=data.user_feedback
+    )
+    return {"status": "Success", "message": "Feedback saved!"}
